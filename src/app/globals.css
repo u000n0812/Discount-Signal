@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+/* 프로토타입(기획안 아티팩트)의 팔레트를 그대로 옮긴 값들 */
+:root {
+  --color-bg: #f1f3f0;
+  --color-surface: #ffffff;
+  --color-surface-2: #e7eae5;
+  --color-ink: #1a211d;
+  --color-ink-soft: #5b6660;
+  --color-ink-faint: #8b958e;
+  --color-line: #d7dcd2;
+  --color-accent: #ff6b35;
+  --color-accent-soft: #ffe4d6;
+  --color-match: #2f9e6e;
+  --color-match-soft: #dcf2e7;
+  --color-danger: #d6483b;
+  --shadow-card: 0 1px 2px rgba(20, 24, 20, 0.04), 0 8px 24px -12px rgba(20, 24, 20, 0.18);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #12160f;
+    --color-surface: #1a2118;
+    --color-surface-2: #232c20;
+    --color-ink: #ecefe9;
+    --color-ink-soft: #a9b3a6;
+    --color-ink-faint: #71796e;
+    --color-line: #2c362a;
+    --color-accent: #ff8156;
+    --color-accent-soft: #3a2116;
+    --color-match: #49c68c;
+    --color-match-soft: #173225;
+    --color-danger: #e8695c;
+    --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3), 0 12px 32px -12px rgba(0, 0, 0, 0.5);
+  }
+}
+
+@theme inline {
+  --color-bg: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-surface-2: var(--color-surface-2);
+  --color-ink: var(--color-ink);
+  --color-ink-soft: var(--color-ink-soft);
+  --color-ink-faint: var(--color-ink-faint);
+  --color-line: var(--color-line);
+  --color-accent: var(--color-accent);
+  --color-accent-soft: var(--color-accent-soft);
+  --color-match: var(--color-match);
+  --color-match-soft: var(--color-match-soft);
+  --color-danger: var(--color-danger);
+  --font-display: var(--font-sora);
+  --font-sans: var(--font-public-sans);
+  --font-mono: var(--font-jetbrains-mono);
+}
+
+html,
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+}
+
+body {
+  font-family: var(--font-public-sans), "Pretendard", -apple-system, sans-serif;
+}
+
+.card-shadow {
+  box-shadow: var(--shadow-card);
+}
+
+input[type="range"] {
+  accent-color: var(--color-accent);
+}
+
+::selection {
+  background: var(--color-accent-soft);
+  color: var(--color-ink);
+}
