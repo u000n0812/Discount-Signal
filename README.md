@@ -3,9 +3,6 @@
 내가 등록한 조건에 맞는 할인이 시작될 때만 알려주는 알림 앱.
 개별 쇼핑몰 앱처럼 모든 프로모션을 쏟아내지 않고, 조건에 맞을 때만 울립니다.
 
-> **이 브랜치(`claude/signal-app`)에는 시그널만 있습니다.**
-> 같은 저장소의 몽블랑(`main`)과는 코드·데이터베이스·배포가 전부 분리되어 있어요.
-
 - **스팀 게임** — 게임을 이름으로 검색해 등록하면 가격과 할인율을 지켜봐요.
 - **브랜드 사이트** — 벨리에(`belier.co.kr`) 같은 주소를 등록하면 세일 시작을 지켜봐요.
 - **조건** — 최소 할인율(%) 또는 목표가(원) 중 **하나만 충족해도** 알려줘요.
@@ -21,13 +18,15 @@ npm run db:migrate
 npm run dev              # http://localhost:3000
 ```
 
-- `DATABASE_URL`은 몽블랑과 다른, 이 앱 전용 데이터베이스를 쓰세요.
+- `DATABASE_URL`은 이 앱 전용 데이터베이스를 쓰세요.
 - `GEMINI_API_KEY`는 없어도 동작해요. 없으면 브랜드 페이지 판정이 키워드 방식으로 물러납니다.
 
 ## 배포 (Vercel)
 
-Vercel 프로젝트를 새로 만들고 **Production Branch를 `claude/signal-app`으로** 지정하면 됩니다.
-브랜치 루트가 곧 앱 루트라 Root Directory는 그대로 두면 돼요. 몽블랑과 별개 프로젝트로 배포돼요.
+Vercel에서 **Add New → Project**로 이 저장소를 임포트하면 끝이에요. 브랜치나 Root Directory를
+따로 만질 필요가 없어요. 임포트 화면에서 환경 변수 세 가지(`DATABASE_URL`, `CRON_SECRET`,
+그리고 선택인 `GEMINI_API_KEY`)만 넣어주세요. Postgres는 Storage에서 새로 붙이면
+`DATABASE_URL`이 자동으로 채워져요.
 
 `vercel.json`에 1시간 주기 크론이 들어 있고, `CRON_SECRET`을 넣어야 `/api/cron`이 열려요
 (없으면 503). Vercel Hobby 요금제는 크론 주기 제한이 있어 하루 1회로 줄여야 할 수 있어요.
